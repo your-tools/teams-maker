@@ -1,16 +1,16 @@
 # Groups maker
 
 
-Create a list of groups from a list of students
+Create a list of teams with funny names from a list of participants
 
 ## Usage
 
-Put all the students in a file, one per line.
+Put all the participants in a file, one per line.
 
 Then run:
 
 ```
-$ groups-maker STUDENT_LIST_PATH --group-size <GROUP_SIZE>
+$ teams-maker STUDENT_LIST_PATH --team-size <TEAM_SIZE>
 ```
 
 You'll get an output looking like this:
@@ -30,6 +30,9 @@ Melissa
 Ryan
 ```
 
+Note that some teams may have a little more or a little less than members
+than `TEAM_SIZE`.
+
 
 ## Contributing
 
@@ -37,7 +40,7 @@ Ryan
 * Install required dependencies
 
 ```
-poetry install --group dev
+poetry install --team dev
 ```
 
 Before submitting a change, run the following commands:

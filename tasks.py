@@ -1,7 +1,7 @@
 # type: ignore
 from invoke import call, task
 
-SOURCES = "groups_maker tests"
+SOURCES = "teams_maker tests"
 
 
 @task

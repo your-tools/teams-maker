@@ -2,9 +2,9 @@
 profile = "black"
 
 [tool.poetry]
-name = "groups-maker"
+name = "teams-maker"
 version = "0.0.1"
-description = "Create groups based on a list of names"
+description = "Create random teams with funny names based on a list of participants"
 authors = ["Dimitri Merejkowsky <dimitri@dmerej.info>"]
 readme = "README.md"
 license = "BSD-3-Clause"
@@ -47,4 +47,4 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-groups-maker = "groups_maker:main"
+teams-maker = "teams_maker:main"
