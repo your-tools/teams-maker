@@ -1,0 +1,50 @@
+[tool.isort]
+profile = "black"
+
+[tool.poetry]
+name = "groups-maker"
+version = "0.0.1"
+description = "Create groups based on a list of names"
+authors = ["Dimitri Merejkowsky <dimitri@dmerej.info>"]
+readme = "README.md"
+license = "BSD-3-Clause"
+# repository = ""
+# documentation = ""
+
+[tool.poetry.urls]
+# Changelog = ""
+# Issues = ""
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+Faker = "^15.1.1"
+
+[tool.poetry.group.dev.dependencies]
+# Task runner
+invoke = "^1.5.0"
+
+# Tests
+coverage = "^5.2"
+pytest = "^6.2.1"
+pytest-cov = "^2.10"
+
+# Linters
+black = "^22.3"
+flake8 = "^5.0"
+flake8-bugbear = "^21.4.3"
+flake8-comprehensions = "^3.4.0"
+pep8-naming = "^0.11.1"
+isort = "^5.7.0"
+mypy = "0.960"
+
+# Deps scanning
+safety = "^1.9.0"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+groups-maker = "groups_maker:main"
