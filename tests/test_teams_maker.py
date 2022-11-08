@@ -2,7 +2,7 @@ from itertools import chain
 
 from faker import Faker
 
-from teams_maker import compute_team_sizes, create_teams
+from teams_maker import compute_team_sizes, create_teams, get_team_name
 
 
 def test_compute_team_size_when_divisible() -> None:
@@ -29,3 +29,8 @@ def test_create_random_teams() -> None:
 
     in_teams = list(chain(*teams))
     assert sorted(in_teams) == sorted(participants)
+
+
+def test_get_team_name_from_colors_txt() -> None:
+    name = get_team_name(source="colors", index=0, offset=0)
+    assert name == "Almond"

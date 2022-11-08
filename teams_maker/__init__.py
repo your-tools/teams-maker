@@ -3,8 +3,6 @@ from copy import copy
 from pathlib import Path
 from random import shuffle
 
-from faker import Faker
-
 
 def compute_team_sizes(total: int, team_size: int) -> list[int]:
     res: list[int] = []
@@ -52,21 +50,29 @@ def create_teams(participants: list[str], team_size: int) -> list[list[str]]:
     return teams
 
 
+def get_team_name(*, source: str, index: int = 0, offset: int = 0) -> str:
+    lines = Path(f"teams_maker/{source}").read_text().splitlines(keepends=False)
+    return lines[index + offset]
+
+
 def main() -> None:
     parser = ArgumentParser()
     parser.add_argument("partipant_list", type=Path)
     parser.add_argument("--team-size", type=int, required=True)
-    parser.add_argument("--provider")
+    parser.add_argument("--source")
+    parser.add_argument("--offset", type=int, default=0)
     args = parser.parse_args()
 
     list_path = args.partipant_list
     team_size = args.team_size
+    source = args.source
+    offset = args.offset
     participants = list_path.read_text().splitlines()
-    faker = Faker()
 
     teams = create_teams(participants, team_size)
-    for team in teams:
-        team_name = faker.color_name()
-        print("-" * 10, team_name, "-" * 10)
+    for index, team in enumerate(teams):
+        team_name = get_team_name(source=source, index=index, offset=offset)
+        print("-" * 10, "Team", team_name, "-" * 10)
         for partipant in sorted(team):
             print(partipant)
+        print()
