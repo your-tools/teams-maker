@@ -2,7 +2,7 @@ from itertools import chain
 
 from faker import Faker
 
-from teams_maker import compute_team_sizes, create_teams, get_team_name
+from teams_maker.teams import compute_team_sizes, create_teams, get_team_name
 
 
 def test_compute_team_size_when_divisible() -> None:
