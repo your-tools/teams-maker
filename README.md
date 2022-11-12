@@ -1,4 +1,4 @@
-# Groups maker
+# teams-maker
 
 
 Create a list of teams with funny names from a list of participants
@@ -10,19 +10,19 @@ Put all the participants in a file, one per line.
 Then run:
 
 ```
-$ teams-maker STUDENT_LIST_PATH --team-size <TEAM_SIZE>
+$ teams-maker PARTICIPANTS_PATH --source colors --team-size <TEAM_SIZE>
 ```
 
 You'll get an output looking like this:
 
 ```text
- ---------- Green ----------
+ ---------- Team Almond ----------
 Bailey
 Peter
 Randy
 Ronald
 Taylor
----------- Blue ----------
+---------- Team Blue ----------
 Christine
 Jesse
 Katherine
@@ -40,7 +40,7 @@ than `TEAM_SIZE`.
 * Install required dependencies
 
 ```
-poetry install --team dev
+poetry install
 ```
 
 Before submitting a change, run the following commands:
