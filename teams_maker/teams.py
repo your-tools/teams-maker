@@ -1,10 +1,11 @@
 from copy import copy
 from pathlib import Path
 from random import shuffle
+from typing import List
 
 
-def compute_team_sizes(total: int, team_size: int) -> list[int]:
-    res: list[int] = []
+def compute_team_sizes(total: int, team_size: int) -> List[int]:
+    res: List[int] = []
     # First off, create as many teams with the correct size that we can
     while sum(res) <= total - team_size:
         res.append(team_size)
@@ -34,7 +35,7 @@ def compute_team_sizes(total: int, team_size: int) -> list[int]:
     return res
 
 
-def create_teams(participants: list[str], team_size: int) -> list[list[str]]:
+def create_teams(participants: List[str], team_size: int) -> List[List[str]]:
     participants_copy = copy(participants)
     team_sizes = compute_team_sizes(len(participants), team_size)
     teams = []
