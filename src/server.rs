@@ -13,14 +13,8 @@ pub struct State {
     db: SqlitePool,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
-pub(crate) struct ParticipantResponse {
-    pub(crate) name: String,
-    pub(crate) group_id: Option<i64>,
-}
-
 #[derive(Deserialize, Serialize, Debug)]
-pub(crate) struct ParticipantRequest {
+pub(crate) struct Participant {
     pub(crate) name: String,
     pub(crate) group_id: Option<i64>,
 }

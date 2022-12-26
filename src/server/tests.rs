@@ -3,7 +3,7 @@ use sqlx::Executor;
 use tide::http::{Method, Request, Response, Url};
 use tide::{Body, StatusCode};
 
-use crate::server::{Group, ParticipantRequest, ParticipantResponse};
+use crate::server::{Group, Participant};
 
 use super::{get_app, Server};
 
@@ -58,7 +58,7 @@ async fn test_fortune() {
 async fn test_create_participant() {
     let app = get_test_app().await;
 
-    let bob = ParticipantRequest {
+    let bob = Participant {
         name: "Bob".to_string(),
         group_id: None,
     };
@@ -84,13 +84,13 @@ async fn test_create_participant_in_group() {
     };
     post_and_create(&app, "/group", group).await;
 
-    let bob = ParticipantRequest {
+    let bob = Participant{
         name: "Bob".to_string(),
         group_id: Some(1),
     };
     post_and_create(&app, "/participant", bob).await;
 
     let body = get(&app, "/participant/1").await;
-    let desc: ParticipantResponse = serde_json::from_str(&body).unwrap();
+    let desc: Participant= serde_json::from_str(&body).unwrap();
     assert_eq!(desc.group_id, Some(1));
 }
