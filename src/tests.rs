@@ -38,6 +38,13 @@ fn test_compute_team_sizes_() {
     assert_eq!(compute_team_sizes(31, 30).unwrap(), vec![31]);
 }
 
+#[test]
+fn test_parsing_leading_zeros() {
+    let s = "001";
+    let i: i64 = s.parse().unwrap();
+    assert_eq!(i, 1);
+}
+
 use proptest::prelude::*;
 
 proptest! {

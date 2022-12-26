@@ -1,8 +1,11 @@
-use sqlx::Error;
-use sqlx::SqlitePool;
-use sqlx::{query, query_as};
+use sqlx::{migrate, query, query_as, Error, SqlitePool};
 
 use crate::server::{Group, Participant};
+
+pub(crate) async fn migrate_db(db: &SqlitePool) -> Result<(), Error> {
+    migrate!("src/migrations").run(db).await?;
+    Ok(())
+}
 
 pub(crate) async fn get_fortune_by_id(db: &SqlitePool, id: i64) -> Result<Option<String>, Error> {
     let query = query!("SELECT text FROM fortunes WHERE id = ?", id);

@@ -3,6 +3,8 @@ use serde::{Deserialize, Serialize};
 use sqlx::SqlitePool;
 use tide::{log::*, Body, Response, StatusCode};
 
+use crate::db;
+
 pub(crate) mod routes;
 
 type Request = tide::Request<State>;
@@ -10,7 +12,7 @@ pub type Server = tide::Server<State>;
 
 #[derive(Clone)]
 pub struct State {
-    pool: SqlitePool,
+    db_pool: SqlitePool,
 }
 
 #[derive(Deserialize, Serialize, Debug)]
@@ -57,8 +59,9 @@ fn extract_number(req: &Request, param: &'static str) -> Result<i64, tide::Error
 async fn get_app(db_url: &str) -> tide::Result<Server> {
     info!("Using database at {db_url}");
     let pool = SqlitePool::connect(db_url).await?;
+    db::migrate_db(&pool).await?;
 
-    let mut app = tide::with_state(State { pool });
+    let mut app = tide::with_state(State { db_pool: pool });
 
     app.at("/ping").get(routes::ping);
     app.at("/fortune/:id").get(routes::fortune);

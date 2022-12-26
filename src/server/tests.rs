@@ -1,5 +1,4 @@
 use serde::Serialize;
-use sqlx::Executor;
 use tide::http::{Method, Request, Response, Url};
 use tide::{Body, StatusCode};
 
@@ -9,9 +8,6 @@ use super::{get_app, Server};
 
 async fn get_test_app() -> Server {
     let app = get_app("sqlite://:memory:").await.unwrap();
-    let db = &app.state().pool;
-    let query = include_str!("../../init.sql");
-    db.execute(query).await.unwrap();
     app
 }
 
@@ -84,13 +80,13 @@ async fn test_create_participant_in_group() {
     };
     post_and_create(&app, "/group", group).await;
 
-    let bob = Participant{
+    let bob = Participant {
         name: "Bob".to_string(),
         group_id: Some(1),
     };
     post_and_create(&app, "/participant", bob).await;
 
     let body = get(&app, "/participant/1").await;
-    let desc: Participant= serde_json::from_str(&body).unwrap();
+    let desc: Participant = serde_json::from_str(&body).unwrap();
     assert_eq!(desc.group_id, Some(1));
 }
