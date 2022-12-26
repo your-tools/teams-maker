@@ -18,7 +18,7 @@ pub(crate) async fn fortune(req: Request) -> tide::Result {
 
     let fortune = db::get_fortune_by_id(connection, fortune_id).await?;
     match fortune {
-        Some(f) => return Ok(f.into()),
+        Some(f) => Ok(f.into()),
         None => not_found(format!("Not fortune found for id {fortune_id}")),
     }
 }

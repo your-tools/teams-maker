@@ -56,7 +56,7 @@ fn extract_number(req: &Request, param: &'static str) -> Result<i64, tide::Error
 
 async fn get_app(db_url: &str) -> tide::Result<Server> {
     info!("Using database at {db_url}");
-    let pool = SqlitePool::connect(&db_url).await?;
+    let pool = SqlitePool::connect(db_url).await?;
 
     let mut app = tide::with_state(State { db: pool });
 
