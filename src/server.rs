@@ -10,7 +10,7 @@ pub type Server = tide::Server<State>;
 
 #[derive(Clone)]
 pub struct State {
-    db: SqlitePool,
+    pool: SqlitePool,
 }
 
 #[derive(Deserialize, Serialize, Debug)]
@@ -58,7 +58,7 @@ async fn get_app(db_url: &str) -> tide::Result<Server> {
     info!("Using database at {db_url}");
     let pool = SqlitePool::connect(db_url).await?;
 
-    let mut app = tide::with_state(State { db: pool });
+    let mut app = tide::with_state(State { pool });
 
     app.at("/ping").get(routes::ping);
     app.at("/fortune/:id").get(routes::fortune);

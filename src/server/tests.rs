@@ -9,7 +9,7 @@ use super::{get_app, Server};
 
 async fn get_test_app() -> Server {
     let app = get_app("sqlite://:memory:").await.unwrap();
-    let db = &app.state().db;
+    let db = &app.state().pool;
     let query = include_str!("../../init.sql");
     db.execute(query).await.unwrap();
     app
