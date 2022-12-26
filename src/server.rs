@@ -20,7 +20,7 @@ pub(crate) struct ParticipantResponse {
 }
 
 #[derive(Deserialize, Serialize, Debug)]
-pub(crate) struct Participant {
+pub(crate) struct ParticipantRequest {
     pub(crate) name: String,
     pub(crate) group_id: Option<i64>,
 }
