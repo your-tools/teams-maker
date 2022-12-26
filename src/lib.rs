@@ -7,8 +7,8 @@ pub struct Team {
     members: Vec<String>,
 }
 
-pub fn split_goup(group: &[&str], team_size: usize) -> Vec<Team> {
-    let team_sizes = compute_team_sizes(group.len(), team_size);
+pub fn split_goup(group: &[&str], team_size: usize) -> Result<Vec<Team>, String> {
+    let team_sizes = compute_team_sizes(group.len(), team_size)?;
     let participants = &mut group.to_vec();
     let mut rng = rand::thread_rng();
     participants.shuffle(&mut rng);
@@ -22,10 +22,25 @@ pub fn split_goup(group: &[&str], team_size: usize) -> Vec<Team> {
         let team = Team { members };
         teams.push(team);
     }
-    teams
+    Ok(teams)
 }
 
-fn compute_team_sizes(group_size: usize, team_size: usize) -> Vec<usize> {
+fn compute_team_sizes(group_size: usize, team_size: usize) -> Result<Vec<usize>, String> {
+    if team_size < 2 {
+        return Err(format!(
+            "`team_size` must greater or equal than 2, but got {team_size}"
+        ));
+    }
+    if group_size < 2 {
+        return Err(format!(
+            "`group_size` gmust greater or equal than 2, but got {group_size}"
+        ));
+    }
+    if team_size > group_size {
+        return Err(format!(
+            "team_size ({team_size}) must not be greater than group size ({group_size})"
+        ));
+    }
     let mut res = vec![];
     let mut current_sum = 0;
     // Create as many teams with the correct size as we can:
@@ -36,7 +51,7 @@ fn compute_team_sizes(group_size: usize, team_size: usize) -> Vec<usize> {
 
     // Group size was divisible by team_size, we're done
     if current_sum == group_size {
-        return res;
+        return Ok(res);
     }
 
     // Now we still have `remaining` people to put in a team
@@ -46,14 +61,14 @@ fn compute_team_sizes(group_size: usize, team_size: usize) -> Vec<usize> {
         // If we have just one person with no team, just increase the last team
         let num_teams = res.len();
         res[num_teams - 1] += 1;
-        return res;
+        return Ok(res);
     } else {
         // Otherwise, create a smaller team
         res.push(remaining);
     }
 
     if res.len() < 3 {
-        return res;
+        return Ok(res);
     }
 
     // Last tweak: if the last two teams have a difference of 2,
@@ -64,7 +79,7 @@ fn compute_team_sizes(group_size: usize, team_size: usize) -> Vec<usize> {
         res[num_teams - 2] -= 1;
     }
 
-    res
+    Ok(res)
 }
 
 #[cfg(test)]
