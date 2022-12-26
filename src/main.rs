@@ -3,5 +3,5 @@ use tide;
 
 #[async_std::main]
 async fn main() -> tide::Result<()> {
-    server::main()
+    server::run().await
 }

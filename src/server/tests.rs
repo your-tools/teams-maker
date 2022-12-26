@@ -3,7 +3,9 @@ use sqlx::Executor;
 use tide::http::{Method, Request, Response, Url};
 use tide::{Body, StatusCode};
 
-use super::{get_app, Group, Participant, ParticipantDescription, Server};
+use crate::server::{Group, Participant, ParticipantResponse};
+
+use super::{get_app, Server};
 
 async fn get_test_app() -> Server {
     let app = get_app("sqlite://:memory:").await.unwrap();
@@ -89,6 +91,6 @@ async fn test_create_participant_in_group() {
     post_and_create(&app, "/participant", bob).await;
 
     let body = get(&app, "/participant/1").await;
-    let desc: ParticipantDescription = serde_json::from_str(&body).unwrap();
+    let desc: ParticipantResponse = serde_json::from_str(&body).unwrap();
     assert_eq!(desc.group_id, Some(1));
 }
