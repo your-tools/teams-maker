@@ -33,7 +33,7 @@ pub(crate) async fn insert_participant(
     db: &SqlitePool,
     participant: &Participant,
 ) -> Result<(), Error> {
-    Ok(match participant.group_id {
+    match participant.group_id {
         None => {
             query!("INSERT INTO participants(name) VALUES(?)", participant.name)
                 .execute(db)
@@ -48,7 +48,8 @@ pub(crate) async fn insert_participant(
             .execute(db)
             .await?;
         }
-    })
+    };
+    Ok(())
 }
 
 pub(crate) async fn insert_group(db: &SqlitePool, group: &Group) -> Result<(), Error> {
