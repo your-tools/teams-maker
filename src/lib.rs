@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+pub mod server;
 
 use rand::seq::SliceRandom;
 
