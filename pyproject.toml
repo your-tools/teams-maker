@@ -19,6 +19,8 @@ license = "BSD-3-Clause"
 python = "^3.7"
 
 Faker = "^15.1.1"
+fastapi = "^0.88.0"
+uvicorn = {extras = ["standard"], version = "^0.20.0"}
 
 [tool.poetry.group.dev.dependencies]
 # Task runner
