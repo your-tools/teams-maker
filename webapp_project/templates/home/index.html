@@ -1,0 +1,39 @@
+{% extends "shared/_layout.html" %} {% block main_content %}
+
+<div>
+  <div id="swapable-content"></div>
+  <form
+    id="team-form"
+    hx-swap="outerHTML"
+    hx-target="#swapable-content"
+    action="/teams/create"
+    method="POST"
+  >
+    <div>
+      <p>
+        File that contains participants. Put all the participants in a file, one
+        per line.
+      </p>
+      <!-- Rajouter required -->
+      <input type="file" name="file" />
+    </div>
+
+    <div>
+      <p>Choose the team size</p>
+      <input type="number" name="team_size" min="1" />
+    </div>
+
+    <div>
+      <label for="source-select">Type of names for teams</label>
+      <select name="source" id="source-select">
+        <option value="">Choose an option</option>
+        {% for source in sources %}
+        <option value="{{ source }}">{{ source }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit">Create teams</button>
+  </form>
+</div>
+
+{% endblock %}
