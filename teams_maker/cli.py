@@ -17,10 +17,11 @@ def main() -> None:
     source = args.source
     offset = args.offset
     participants = list_path.read_text().splitlines()
+    source_path = "teams_maker/name_providers/" + source
 
     teams = create_teams(participants, team_size)
     for index, team in enumerate(teams):
-        team_name = get_team_name(source=source, index=index, offset=offset)
+        team_name = get_team_name(source_path=source_path, index=index, offset=offset)
         print("-" * 10, "Team", team_name, "-" * 10)
         for partipant in sorted(team):
             print(partipant)

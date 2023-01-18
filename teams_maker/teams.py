@@ -50,10 +50,6 @@ def create_teams(participants: List[str], team_size: int) -> List[List[str]]:
     return teams
 
 
-def get_team_name(*, source: str, index: int = 0, offset: int = 0) -> str:
-    lines = (
-        Path(f"teams_maker/name_providers/{source}")
-        .read_text()
-        .splitlines(keepends=False)
-    )
+def get_team_name(*, source_path: str, index: int = 0, offset: int = 0) -> str:
+    lines = Path(source_path).read_text().splitlines(keepends=False)
     return lines[index + offset]
