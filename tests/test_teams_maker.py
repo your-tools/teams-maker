@@ -32,5 +32,6 @@ def test_create_random_teams() -> None:
 
 
 def test_get_team_name_from_colors_txt() -> None:
-    name = get_team_name(source="colors", index=0, offset=0)
+    source_path = "teams_maker/name_providers/" + "colors"
+    name = get_team_name(source_path=source_path, index=0, offset=0)
     assert name == "Almond"
