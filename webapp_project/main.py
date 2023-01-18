@@ -9,10 +9,7 @@ app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
 
-# input du fichier
-# choix de la taille des équipes
-# choix du type de nom des équipes
-# offset ?
+
 @app.get("/", response_class=HTMLResponse)
 def home_page(request: Request):
     sources = get_file_name_from_name_providers()
