@@ -14,7 +14,7 @@ templates = Jinja2Templates(directory="templates")
 # choix du type de nom des équipes
 # offset ?
 @app.get("/", response_class=HTMLResponse)
-def index(request: Request):
+def home_page(request: Request):
     sources = get_file_name_from_name_providers()
     context = {"request": request, "sources": sources}
-    return templates.TemplateResponse("index.html", context)
+    return templates.TemplateResponse("home/index.html", context)
