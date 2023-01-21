@@ -1,6 +1,7 @@
 from os import listdir
 from os.path import isfile, join
 
+PATH_TO_NAME_PROVIDERS = "../teams_maker/name_providers/"
 
 def get_file_name_from_name_providers():
     path_to_name_providers = "../teams_maker/name_providers/"
