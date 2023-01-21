@@ -12,3 +12,7 @@ def get_file_names_from_name_providers():
         if isfile(join(PATH_TO_NAME_PROVIDERS, f))
     ]
     return file_names
+
+
+def read_decode_and_splitlines(file):
+    return file.file.read().decode("UTF-8").splitlines()
