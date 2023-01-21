@@ -1,0 +1,22 @@
+{% extends "shared/_layout.html" %} {% block main_content %}
+<div>
+  <table>
+    <thead>
+      <tr>
+        {% for team_name in teams_names -%}
+        <th>{{ team_name }}</th>
+        {% endfor -%}
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in range(team_size) -%}
+      <tr>
+        {% for team in teams -%}
+        <td>{{ team[i] }}</td>
+        {% endfor -%}
+      </tr>
+      {% endfor -%}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
