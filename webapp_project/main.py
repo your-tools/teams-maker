@@ -48,3 +48,9 @@ def teams_create(
     }
 
     return templates.TemplateResponse("teams/teams.html", context)
+
+
+@app.get("/teams/names-providers")
+def names_providers(request: Request):
+    context = {"request": request}
+    return templates.TemplateResponse("teams/names-providers.html", context)
