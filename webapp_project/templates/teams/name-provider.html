@@ -1,0 +1,17 @@
+<div>
+  <div id="swapable-content"></div>
+  <form
+    id="name-provider-form"
+    hx-swap="outerHTML"
+    hx-target="#swapable-content"
+    action="/teams/name-provider/"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <div>
+      <p>Enter the name provider name</p>
+      <input type="text" name="name" />
+    </div>
+    <button type="submit">Create name provider</button>
+  </form>
+</div>

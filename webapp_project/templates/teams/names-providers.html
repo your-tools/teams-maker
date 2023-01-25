@@ -1,5 +1,9 @@
 {% extends "shared/_layout.html" %} {% block main_content %}
+<div>
 <h2>Names providers</h2>
+  <div hx-target="this" hx-swap="outerHTML">
+    <button hx-get="/teams/name-provider/">Create a name provider</button>
+  </div>
 <table>
   <tr>
     <td>Name provider</td>
@@ -8,4 +12,5 @@
     <td><button>Delete</button></td>
   </tr>
 </table>
+</div>
 {% endblock %}
