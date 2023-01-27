@@ -10,6 +10,7 @@ def create_name_provider(db: Session, name_provider: schemas.NameProviderCreate)
     db.refresh(db_name_provider)
     return db_name_provider
 
+
 # Read
 def get_a_name_provider(db: Session, name_provider_id: int):
     return (
@@ -21,6 +22,7 @@ def get_a_name_provider(db: Session, name_provider_id: int):
 
 def get_names_providers(db: Session):
     return db.query(models.NameProvider).all()
+
 
 # Delete
 def delete_name_provider(db: Session, name_provider: schemas.NameProvider):
