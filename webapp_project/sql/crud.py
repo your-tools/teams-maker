@@ -21,3 +21,8 @@ def get_a_name_provider(db: Session, name_provider_id: int):
 
 def get_names_providers(db: Session):
     return db.query(models.NameProvider).all()
+
+# Delete
+def delete_name_provider(db: Session, name_provider: schemas.NameProvider):
+    db.delete(name_provider)
+    db.commit()

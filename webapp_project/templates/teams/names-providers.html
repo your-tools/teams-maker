@@ -1,16 +1,28 @@
 {% extends "shared/_layout.html" %} {% block main_content %}
 <div>
-<h2>Names providers</h2>
+  <h2>Names providers</h2>
   <div hx-target="this" hx-swap="outerHTML">
     <button hx-get="/teams/name-provider/">Create a name provider</button>
   </div>
-<table>
-  <tr>
-    <td>Name provider</td>
-    <td><button>Edit name</button></td>
-    <td><button>Edit</button></td>
-    <td><button>Delete</button></td>
-  </tr>
-</table>
+  <table>
+    <tbody
+      hx-confirm="Are you sure?"
+      hx-target="closest tr"
+      hx-swap="outerHTML swap:1s"
+    >
+      {% for name_provider in names_providers -%}
+      <tr>
+        <td>{{ name_provider.name }}</td>
+        <td><button>Edit name provider</button></td>
+        <td><button>Edit names</button></td>
+        <td>
+          <button hx-delete="/teams/names-providers/{{ name_provider.id }}">
+            Delete
+          </button>
+        </td>
+      </tr>
+      {% endfor -%}
+    </tbody>
+  </table>
 </div>
 {% endblock %}

@@ -63,6 +63,17 @@ def teams_create(
 
 
 @app.get("/teams/names-providers/")
+def read_names_providers(request: Request, db: Session = Depends(get_db)):
+    names_providers = crud.get_names_providers(db=db)
+
+    context = {
+        "request": request,
+        "names_providers": names_providers,
+    }
+
+    return templates.TemplateResponse("teams/names-providers.html", context)
+
+
 @app.get("/teams/name-provider/")
 def form_to_create_name_provider(request: Request):
     context = {"request": request}
@@ -84,3 +95,15 @@ def create_a_name_provider(
     }
 
     return templates.TemplateResponse("teams/names-providers.html", context)
+
+
+@app.delete("/teams/names-providers/{name_provider_id}")
+def delete_name_provider(
+    name_provider_id: int,
+    db: Session = Depends(get_db),
+):
+    name_provider = crud.get_a_name_provider(db=db, name_provider_id=name_provider_id)
+    if not name_provider:
+        raise HTTPException(status_code=404, detail="Name provider not found")
+    crud.delete_name_provider(db=db, name_provider=name_provider)
+    return HTMLResponse(content="", status_code=200)
