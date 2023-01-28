@@ -58,3 +58,16 @@ pub(crate) async fn insert_group(db: &SqlitePool, group: &Group) -> Result<(), E
         .await?;
     Ok(())
 }
+
+pub(crate) async fn get_participants(
+    db: &SqlitePool,
+    group_id: i64,
+) -> Result<Vec<Participant>, Error> {
+    let query = query_as!(
+        Participant,
+        "SELECT name, group_id FROM participants WHERE group_id=?",
+        group_id
+    );
+    let res = query.fetch_all(db).await?;
+    Ok(res)
+}

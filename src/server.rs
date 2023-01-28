@@ -48,14 +48,6 @@ fn ok_json(payload: &impl Serialize) -> tide::Result {
         .build())
 }
 
-fn extract_number(req: &Request, param: &'static str) -> Result<i64, tide::Error> {
-    let result = req.param(param)?.parse();
-    match result {
-        Ok(d) => Ok(d),
-        Err(e) => Err(tide::Error::new(StatusCode::BadRequest, e)),
-    }
-}
-
 async fn get_app(db_url: &str) -> tide::Result<Server> {
     info!("Using database at {db_url}");
     let pool = SqlitePool::connect(db_url).await?;
@@ -68,6 +60,7 @@ async fn get_app(db_url: &str) -> tide::Result<Server> {
     app.at("/participant").post(routes::new_participant);
     app.at("/participant/:id").get(routes::get_participant);
     app.at("/group").post(routes::new_group);
+    app.at("/teams").get(routes::get_teams);
     Ok(app)
 }
 

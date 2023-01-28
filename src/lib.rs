@@ -1,10 +1,10 @@
-#![allow(dead_code)]
+use serde::{Deserialize, Serialize};
 pub mod db;
 pub mod server;
 
 use rand::seq::SliceRandom;
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Team {
     members: Vec<String>,
 }
