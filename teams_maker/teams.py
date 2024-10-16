@@ -49,10 +49,10 @@ def create_teams(participants: list[str], team_size: int) -> list[list[str]]:
     return teams
 
 
-def get_team_name(*, source: str, index: int = 0, offset: int = 0) -> str:
+def get_team_name(*, name_provider: str, index: int = 0, offset: int = 0) -> str:
     this_path = Path(__file__).parent
     lines = (
-        (this_path / "name_providers" / source)
+        (this_path / "name_providers" / name_provider)
         .read_text()
         .splitlines(keepends=False)
     )
