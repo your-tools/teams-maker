@@ -16,31 +16,17 @@ license = "BSD-3-Clause"
 # Issues = ""
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.11"
 
-Faker = "^15.1.1"
 
 [tool.poetry.group.dev.dependencies]
-# Task runner
-invoke = "^1.5.0"
-
-# Tests
-coverage = "^5.2"
-pytest = "^6.2.1"
-pytest-cov = "^2.10"
-
-# Linters
 black = "^22.3"
+Faker = "^30"
 flake8 = "^5.0"
 flake8-bugbear = "^21.4.3"
 flake8-comprehensions = "^3.4.0"
 pep8-naming = "^0.11.1"
-isort = "^5.7.0"
-mypy = "0.960"
-
-# Deps scanning
-safety = "^1.9.0"
-
+pytest = "^8"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
