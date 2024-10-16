@@ -57,3 +57,13 @@ def get_team_name(*, name_provider: str, index: int = 0, offset: int = 0) -> str
         .splitlines(keepends=False)
     )
     return lines[index + offset]
+
+def check_name_provider(name_provider: str, *, num_teams: int):
+    this_path = Path(__file__).parent
+    lines = (
+        (this_path / "name_providers" / name_provider)
+        .read_text()
+        .splitlines(keepends=False)
+    )
+    if len(lines) < num_teams:
+        raise ValueError(f"name provider '{name_provider}' only contains {len(lines)} psosible team names, but you need {num_teams}")

@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from pathlib import Path
 
-from teams_maker.teams import create_teams, get_team_name
+from teams_maker.teams import create_teams, get_team_name, check_name_provider
 
 
 def main() -> None:
@@ -19,6 +19,7 @@ def main() -> None:
     participants = list_path.read_text().splitlines()
 
     teams = create_teams(participants, team_size)
+    check_name_provider(name_provider, num_teams=len(teams))
     for index, team in enumerate(teams):
         team_name = get_team_name(
             name_provider=name_provider, index=index, offset=offset

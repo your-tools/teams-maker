@@ -2,7 +2,13 @@ from itertools import chain
 
 from faker import Faker
 
-from teams_maker.teams import compute_team_sizes, create_teams, get_team_name
+from teams_maker.teams import (
+    compute_team_sizes,
+    create_teams,
+    get_team_name,
+    check_name_provider,
+)
+import pytest
 
 
 def test_compute_team_size_when_divisible() -> None:
@@ -34,3 +40,10 @@ def test_create_random_teams() -> None:
 def test_get_team_name_from_colors_txt() -> None:
     name = get_team_name(name_provider="colors", index=0, offset=0)
     assert name == "Almond"
+
+
+def test_check_name_provider_has_enough_names():
+    check_name_provider("colors", num_teams=25)
+
+    with pytest.raises(ValueError):
+        check_name_provider("colors", num_teams=100)
