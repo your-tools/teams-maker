@@ -48,22 +48,21 @@ def create_teams(participants: list[str], team_size: int) -> list[list[str]]:
 
     return teams
 
-
-def get_team_name(*, name_provider: str, index: int = 0, offset: int = 0) -> str:
+def read_name_provider(name: str) -> list[str]:
     this_path = Path(__file__).parent
     lines = (
-        (this_path / "name_providers" / name_provider)
+        (this_path / "name_providers" / name)
         .read_text()
         .splitlines(keepends=False)
     )
+    return  lines
+
+def get_team_name(*, name_provider: str, index: int = 0, offset: int = 0) -> str:
+    lines = read_name_provider(name=name_provider)
     return lines[index + offset]
 
 def check_name_provider(name_provider: str, *, num_teams: int):
-    this_path = Path(__file__).parent
-    lines = (
-        (this_path / "name_providers" / name_provider)
-        .read_text()
-        .splitlines(keepends=False)
-    )
+    lines = read_name_provider(name=name_provider)
     if len(lines) < num_teams:
         raise ValueError(f"name provider '{name_provider}' only contains {len(lines)} psosible team names, but you need {num_teams}")
+
