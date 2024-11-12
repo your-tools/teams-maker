@@ -1,6 +1,10 @@
 [tool.isort]
 profile = "black"
 
+[tool.mypy]
+strict = true
+packages = ["teams_maker", "tests"]
+
 [tool.poetry]
 name = "teams-maker"
 version = "0.0.1"
@@ -18,7 +22,6 @@ license = "BSD-3-Clause"
 [tool.poetry.dependencies]
 python = "^3.11"
 
-
 [tool.poetry.group.dev.dependencies]
 black = "^22.3"
 Faker = "^30"
@@ -27,6 +30,8 @@ flake8-bugbear = "^21.4.3"
 flake8-comprehensions = "^3.4.0"
 pep8-naming = "^0.11.1"
 pytest = "^8"
+hypothesis = "^6.115.3"
+mypy = "^1.12.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -34,3 +39,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 teams-maker = "teams_maker.cli:main"
+
+[tool.pytest.ini_options]
+log_cli = true
+addopts = "--verbose --capture=no --hypothesis-show-statistics"
+

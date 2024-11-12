@@ -1,4 +1,6 @@
 from itertools import chain
+from hypothesis import given
+from hypothesis.strategies import integers, data
 
 from faker import Faker
 
@@ -42,8 +44,18 @@ def test_get_team_name_from_colors_txt() -> None:
     assert name == "Almond"
 
 
-def test_check_name_provider_has_enough_names():
+def test_check_name_provider_has_enough_names() -> None:
     check_name_provider("colors", num_teams=25)
 
     with pytest.raises(ValueError):
         check_name_provider("colors", num_teams=100)
+
+
+@given(data())
+def test_fuzz_compute_team_sizes(data) -> None:
+    total = data.draw(integers(min_value=2, max_value=100))
+    team_size = data.draw(integers(min_value=2, max_value=total))
+    team_sizes = compute_team_sizes(total, team_size)
+    print(total, team_size, "->", team_sizes)
+
+

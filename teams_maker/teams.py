@@ -4,6 +4,7 @@ from random import shuffle
 
 
 def compute_team_sizes(total: int, team_size: int) -> list[int]:
+    assert team_size <= total
     res: list[int] = []
     # First off, create as many teams with the correct size that we can
     while sum(res) <= total - team_size:
@@ -61,7 +62,7 @@ def get_team_name(*, name_provider: str, index: int = 0, offset: int = 0) -> str
     lines = read_name_provider(name=name_provider)
     return lines[index + offset]
 
-def check_name_provider(name_provider: str, *, num_teams: int):
+def check_name_provider(name_provider: str, *, num_teams: int) -> None:
     lines = read_name_provider(name=name_provider)
     if len(lines) < num_teams:
         raise ValueError(f"name provider '{name_provider}' only contains {len(lines)} psosible team names, but you need {num_teams}")
