@@ -16,7 +16,7 @@ def main() -> None:
     team_size = args.team_size
     name_provider = args.name_provider
     offset = args.offset
-    participants = list_path.read_text().splitlines()
+    participants = list_path.read_text(encoding="utf-8").splitlines()
 
     teams = create_teams(participants, team_size)
     check_name_provider(name_provider, num_teams=len(teams))
