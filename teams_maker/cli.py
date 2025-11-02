@@ -16,8 +16,10 @@ def main() -> None:
     team_size = args.team_size
     name_provider = args.name_provider
     offset = args.offset
-    participants = list_path.read_text(encoding="utf-8").splitlines()
-
+    lines = list_path.read_text(encoding="utf-8").splitlines()
+    participants = [
+        line.strip() for line in lines if not line.startswith("#") and line.strip()
+    ]
     teams = create_teams(participants, team_size)
     check_name_provider(name_provider, num_teams=len(teams))
     for index, team in enumerate(teams):
