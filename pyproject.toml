@@ -1,23 +1,20 @@
-[tool.isort]
-profile = "black"
 
-[tool.poetry]
+[project]
 name = "teams-maker"
 version = "0.0.1"
 description = "Create random teams with funny names based on a list of participants"
-authors = ["Dimitri Merejkowsky <dimitri@dmerej.info>"]
+authors = [{ name = "Dimitri Merejkowsky", email = "dimitri@dmerej.info" }]
 readme = "README.md"
 license = "BSD-3-Clause"
-# repository = ""
-# documentation = ""
 
-[tool.poetry.urls]
-# Changelog = ""
-# Issues = ""
+[project.scripts]
+teams-maker = "teams_maker.cli:main"
+
+[tool.isort]
+profile = "black"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.3"
@@ -31,6 +28,3 @@ pytest = "^8"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-teams-maker = "teams_maker.cli:main"
