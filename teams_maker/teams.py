@@ -64,5 +64,5 @@ def check_name_provider(name_provider: str, *, num_teams: int) -> None:
     lines = read_name_provider(name=name_provider)
     if len(lines) < num_teams:
         raise ValueError(
-            f"name provider '{name_provider}' only contains {len(lines)} psosible team names, but you need {num_teams}"
+            f"name provider '{name_provider}' only contains {len(lines)} possible team names, but you need {num_teams}"
         )

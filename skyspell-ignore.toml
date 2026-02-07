@@ -1,0 +1,10 @@
+patterns = [
+    "*.lock",
+    "teams_maker/name_providers/*",
+]
+project = ["isort"]
+
+[paths]
+"tasks.py" = ["pty"]
+
+[skipped]
