@@ -1,14 +1,14 @@
 from itertools import chain
 
+import pytest
 from faker import Faker
 
 from teams_maker.teams import (
+    check_name_provider,
     compute_team_sizes,
     create_teams,
     get_team_name,
-    check_name_provider,
 )
-import pytest
 
 
 def test_compute_team_size_when_divisible() -> None:

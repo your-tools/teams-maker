@@ -2,10 +2,10 @@ from argparse import ArgumentParser
 from pathlib import Path
 
 from teams_maker.teams import (
+    NAME_PROVIDERS,
+    check_name_provider,
     create_teams,
     get_team_name,
-    check_name_provider,
-    NAME_PROVIDERS,
 )
 
 
