@@ -42,7 +42,7 @@ def test_get_team_name_from_colors_txt() -> None:
     assert name == "Almond"
 
 
-def test_check_name_provider_has_enough_names():
+def test_check_name_provider_has_enough_names() -> None:
     check_name_provider("colors", num_teams=25)
 
     with pytest.raises(ValueError):
