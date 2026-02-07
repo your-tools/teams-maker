@@ -14,17 +14,17 @@ teams-maker = "teams_maker.cli:main"
 profile = "black"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.3"
 Faker = "^30"
-flake8 = "^5.0"
-flake8-bugbear = "^21.4.3"
-flake8-comprehensions = "^3.4.0"
-pep8-naming = "^0.11.1"
+flake8 = "^7.3.0"
+flake8-bugbear = "^25.11.29"
+flake8-comprehensions = "^3.17.0"
+pep8-naming = "^0.15.1"
 mypy = "^1.19.1"
-pytest = "^8"
+pytest = "^9.0.2"
 isort = "^7.0.0"
 
 [build-system]

@@ -29,13 +29,9 @@ def flake8(c):
 
 
 @task
-def mypy(c, machine_readable=False):
+def mypy(c):
     print("Running mypy")
     cmd = "mypy"
-    if machine_readable:
-        cmd += " --no-pretty"
-    else:
-        cmd += " --color-output --pretty"
     c.run(cmd)
 
 
