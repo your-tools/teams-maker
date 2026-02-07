@@ -2,6 +2,15 @@ from copy import copy
 from pathlib import Path
 from random import shuffle
 
+_this_path = Path(__file__).parent
+NAME_PROVIDERS_PATH = _this_path / "name_providers"
+
+NAME_PROVIDERS = sorted(
+    p.stem
+    for p in NAME_PROVIDERS_PATH.iterdir()
+    if p.is_file() and not p.stem.startswith(".")
+)
+
 
 def compute_team_sizes(total: int, team_size: int) -> list[int]:
     res: list[int] = []
@@ -50,8 +59,8 @@ def create_teams(participants: list[str], team_size: int) -> list[list[str]]:
 
 
 def read_name_provider(name: str) -> list[str]:
-    this_path = Path(__file__).parent
-    lines = (this_path / "name_providers" / name).read_text().splitlines(keepends=False)
+    path = NAME_PROVIDERS_PATH / name
+    lines = path.read_text().splitlines(keepends=False)
     return lines
 
 

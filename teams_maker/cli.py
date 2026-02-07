@@ -1,14 +1,21 @@
 from argparse import ArgumentParser
 from pathlib import Path
 
-from teams_maker.teams import create_teams, get_team_name, check_name_provider
+from teams_maker.teams import (
+    create_teams,
+    get_team_name,
+    check_name_provider,
+    NAME_PROVIDERS,
+)
 
 
 def main() -> None:
     parser = ArgumentParser(prog="teams-maker")
     parser.add_argument("participant_list", type=Path)
     parser.add_argument("--team-size", type=int, required=True)
-    parser.add_argument("--name-provider")
+    parser.add_argument(
+        "--name-provider", type=str, required=True, choices=NAME_PROVIDERS
+    )
     parser.add_argument("--offset", type=int, default=0)
     args = parser.parse_args()
 

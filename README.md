@@ -1,17 +1,26 @@
 # teams-maker
 
-
 Create a list of teams with funny names from a list of participants
 
-## Usage
+## Installation and usage
 
-Put all the participants in a file, one per line.
+- Install [poetry](https://python-poetry.org/)
+- Install required dependencies
+
+```
+poetry install
+```
+
+Put all the participants in a file, one per line, says in
+`participants.txt`
 
 Then run:
 
 ```
-$ teams-maker PARTICIPANTS_PATH --source colors --team-size <TEAM_SIZE>
+$ teams-maker participants --name-provider <PROVIDER> --team-size <TEAM_SIZE>
 ```
+
+Where `<PROVIDER>` matches a file in the `teams_maker/name_providers` directory.
 
 You'll get an output looking like this:
 
@@ -33,15 +42,7 @@ Ryan
 Note that some teams may have a little more or a little less than members
 than `TEAM_SIZE`.
 
-
 ## Contributing
-
-* Install [poetry](https://python-poetry.org/)
-* Install required dependencies
-
-```
-poetry install
-```
 
 Before submitting a change, run the following commands:
 
