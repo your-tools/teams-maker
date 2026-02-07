@@ -13,6 +13,7 @@ teams-maker = "teams_maker.cli:main"
 [tool.isort]
 profile = "black"
 
+
 [tool.poetry.dependencies]
 python = "^3.12"
 
@@ -26,6 +27,10 @@ pep8-naming = "^0.15.1"
 mypy = "^1.19.1"
 pytest = "^9.0.2"
 isort = "^7.0.0"
+
+[tool.mypy]
+packages = ["teams_maker", "tests"]
+strict = true
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
