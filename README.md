@@ -1,5 +1,8 @@
 # teams-maker
 
+
+**This repo has moved to [codeberg](https://codeberg.org/your-tools/teams-maker) - see you there !**
+
 Create a list of teams with funny names from a list of participants
 
 ## Installation and usage
